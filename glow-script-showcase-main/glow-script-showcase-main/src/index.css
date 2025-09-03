@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Futuristic dark theme with blue/teal/neon palette */
+    --background: 220 25% 6%;
+    --foreground: 210 40% 95%;
+
+    --card: 220 20% 8%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 25% 6%;
+
+    --secondary: 280 60% 45%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 210 40% 65%;
+
+    --accent: 180 100% 45%;
+    --accent-foreground: 220 25% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 195 100% 50%;
+
+    /* Custom futuristic tokens */
+    --neon-blue: 195 100% 50%;
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 280 100% 70%;
+    --glass-bg: 220 20% 10%;
+    --glass-border: 220 15% 30%;
+    --glow-primary: 195 100% 50%;
+    --glow-secondary: 280 100% 70%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--neon-blue)), hsl(var(--neon-cyan)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--neon-purple)), hsl(var(--neon-blue)));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--glass-bg) / 0.4), hsl(var(--glass-bg) / 0.1));
+    
+    /* Shadows and glows */
+    --shadow-glow: 0 0 30px hsl(var(--glow-primary) / 0.3);
+    --shadow-glow-hover: 0 0 50px hsl(var(--glow-primary) / 0.6);
+    --shadow-glass: 0 8px 32px hsl(220 25% 6% / 0.3);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Keep same values for dark mode */
+    --background: 220 25% 6%;
+    --foreground: 210 40% 95%;
+    --card: 220 20% 8%;
+    --card-foreground: 210 40% 95%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 40% 95%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 25% 6%;
+    --secondary: 280 60% 45%;
+    --secondary-foreground: 210 40% 95%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 210 40% 65%;
+    --accent: 180 100% 45%;
+    --accent-foreground: 220 25% 6%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 195 100% 50%;
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 220 25% 6%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-light;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glassmorphic components */
+  .glass-card {
+    @apply bg-gradient-to-br from-card/40 to-card/10 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glass-input {
+    @apply bg-input/50 backdrop-blur-xl border border-border/50 rounded-lg;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glow-button {
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg;
+    box-shadow: var(--shadow-glow);
+    transition: all 0.3s ease;
+  }
+  
+  .glow-button:hover {
+    box-shadow: var(--shadow-glow-hover);
+    transform: translateY(-2px);
+  }
+  
+  .glow-orb {
+    @apply absolute rounded-full;
+    background: radial-gradient(circle, hsl(var(--glow-primary) / 0.6), transparent);
+    filter: blur(40px);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5);
+  }
+  
+  .border-glow {
+    border: 1px solid hsl(var(--glow-primary) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.2);
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
